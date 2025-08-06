@@ -47,9 +47,9 @@ const repos = [
 const HeroRight = () => {
   const [showRepo, setRepo] = useState(false);
   return (
-    <div className="pl-12 py-2 w-full">
-      <div className="flex  gap-4 items-center">
-        <div className="w-1/2">
+    <div className="md:pl-12 py-2 w-full">
+      <div className="lg:flex hidden gap-4 items-center">
+        <div className="md:w-1/2">
           <div>
             <input
               className="border w-full rounded-md px-4 py-1 border-zinc-200"
@@ -60,8 +60,11 @@ const HeroRight = () => {
             />
           </div>
         </div>
-        <div className="w-1/2 flex gap-2 ">
-          <div className="flex border-zinc-200 border gap-2 bg-zinc-100 rounded-md px-4 py-1 items-center">
+        <div className="w-1/2 flex gap-2">
+          <div
+            className="flex border-zinc-200 border gap-2 bg-zinc-100 rounded-md px-4 
+            py-1 items-center"
+          >
             <h1>Type</h1>
             <FaCaretDown />
           </div>
@@ -81,11 +84,20 @@ const HeroRight = () => {
           </div>
         </div>
       </div>
-      <hr className=" text-zinc-300 mt-4" />
-      <div className=" px-6 py-4">
-        <div>
+      <hr className="hidden lg:block text-zinc-300 mt-4" />
+      <div className="px-2 md:px-6 py-4">
+        <div className="flex lg:hidden justify-between">
+          <h1>Popular repositories</h1>
+          <h1 className="text-blue-500">Customize your pins</h1>
+        </div>
+        <div className="grid md:grid-cols-2 grid-cols-1 space-y-2 py-3 flex-col gap-4">
           {repos.map((repo) => (
-            <RepoComponent key={repo.id} repo={repo} />
+            <div
+              key={repo.id}
+              className=" lg:shadow-none  rounded-md border lg:border-none border-zinc-400"
+            >
+              <RepoComponent repo={repo} />
+            </div>
           ))}
         </div>
       </div>

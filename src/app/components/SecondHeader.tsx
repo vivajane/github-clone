@@ -9,11 +9,12 @@ import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { GoPackage, GoProjectTemplate } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
-import ShowExtraModal from "./modal-header/showExtraModal";
+import ShowExtraModal from "./modal-header/ShowExtraModal";
+
 
 const SecondHeader = () => {
   const [showExtra, setShowExtra] = useState(false);
-  const [showExtraModal, setShowExtraModal] = useState(false);
+  // const [showExtraModal, setShowExtraModal] = useState(false);
 
   const showExtraHandler = () => {
     setShowExtra((prev) => !prev);
