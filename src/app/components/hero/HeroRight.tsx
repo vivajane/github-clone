@@ -11,36 +11,42 @@ const repos = [
     name: "just-travel",
     stack: "javascript",
     updated: "Updated last week",
+    link: "/just-travel"
   },
   {
     id: 2,
     name: "MedTech",
     stack: "javascript",
     updated: "Updated last week",
+    link: "/medtech"
   },
   {
     id: 3,
     name: "Personal-Portfolio",
     stack: "javascript",
     updated: "Updated 2 week",
+    link: "/personal-portfolio"
   },
   {
     id: 4,
     name: "cosmos",
     stack: "javascript",
     updated: "Updated 3 week",
+    link: "/cosmos"
   },
   {
     id: 5,
     name: "form",
     stack: "javascript",
     updated: "Updated 3 week",
+    link: "/form"
   },
   {
     id: 6,
     name: "dashboard",
     stack: "javascript",
     updated: "Updated 3 week",
+    link: "/dashboard"
   },
 ];
 
@@ -90,7 +96,7 @@ const HeroRight = () => {
           <h1>Popular repositories</h1>
           <h1 className="text-blue-500">Customize your pins</h1>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 space-y-2 py-3 flex-col gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-1 grid-cols-1 space-y-2 py-3 flex-col gap-4">
           {repos.map((repo) => (
             <div
               key={repo.id}
