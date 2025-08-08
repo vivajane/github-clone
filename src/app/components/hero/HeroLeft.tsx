@@ -12,12 +12,12 @@ const HeroLeft = () => {
   const [avatarChange, setAvatarChange] = useState(false);
   const [checkStack, setCheckStack] = useState(false);
   return (
-    <div className="px-2">
-      <div className="py-8 hidden md:block relative w-80 h-80 px-4 ">
+    <div className="pl-2">
+      <div className="pt-8 pb-4 hidden md:block relative w-full ">
         <img
           onMouseEnter={() => setAvatarChange(true)}
           onMouseLeave={() => setAvatarChange(false)}
-          className="rounded-full w-72 h-72"
+          className="rounded-full w-72 aspect-square"
           src={passport.src}
           alt="passport"
         />
@@ -44,7 +44,7 @@ const HeroLeft = () => {
           </div>
         </div>
       </div>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <h1 className="text-2xl pt-3 font-semibold w-80">
           Ojiteli Kosisochukwu
         </h1>
@@ -54,11 +54,11 @@ const HeroLeft = () => {
       </div>
       {/* for small screens */}
       <div className="flex md:hidden">
-        <div className="py-8 flex gap-8 relative">
+        <div className="py-8 flex gap-4 sm:gap-8 relative">
           <img
             onMouseEnter={() => setAvatarChange(true)}
             onMouseLeave={() => setAvatarChange(false)}
-            className="rounded-full w-18 aspect-square"
+            className="rounded-full w-16 h-16 sm:w-18 sm:aspect-square"
             src={passport.src}
             alt="passport"
           />
@@ -69,31 +69,32 @@ const HeroLeft = () => {
           )}
 
           {/* jjjjk/ */}
-          <div className="">
-            <h1 className="text-2xl pt-3 font-semibold md:w-80">
+          <div className="lg:hidden block">
+            <h1 className="sm:text-2xl text-xl pt-3 font-semibold md:w-80">
               Ojiteli Kosisochukwu
             </h1>
             <p className="text-xl text-zinc-500">
               vivajane <span>· she/her</span>
             </p>
           </div>
-
-        </div>
-        <div className="hidden md:block">
-          <h1 className="text-2xl pt-3 font-semibold w-80">
-            Ojiteli Kosisochukwu
-          </h1>
-          <p className="text-xl text-zinc-500">
-            vivajane <span>· she/her</span>
-          </p>
         </div>
       </div>
+      <div className="hidden md:block lg:hidden">
+        <h1 className="text-2xl font-semibold w-80">
+          Ojiteli Kosisochukwu
+        </h1>
+        <p className="text-xl text-zinc-500">
+          vivajane <span>· she/her</span>
+        </p>
+      </div>
       <div className="flex md:hidden gap-2 bg-zinc-50 text-zinc-600 border py-[2px] border-zinc-300 rounded-md px-4 items-center">
-        <span><TbBrandGravatar size={20} /></span>
+        <span>
+          <TbBrandGravatar size={20} />
+        </span>
         <p className="text-zinc-600 font-semibold ">A Frontend Developer</p>
       </div>
 
-      <p className="md:w-72 md:py-2 py-4 leading-6 text-zinc-700">
+      <p className="lg:w-72 w-full md:py-2 py-4 leading-6 text-zinc-700">
         A Frontend developer experienced in HTML, CSS, React and Next.js with
         keen interest in developing visually appealing websites
       </p>
@@ -115,7 +116,10 @@ const HeroLeft = () => {
         <div>
           <div className="flex gap-2 text-zinc-600 items-center">
             <FaLinkedin size={20} />
-            <a className="hover:text-blue-500 hover:underline" href="https://www.linkedin.com/in/vivianojiteli/">
+            <a
+              className="hover:text-blue-500 hover:underline"
+              href="https://www.linkedin.com/in/vivianojiteli/"
+            >
               in.com/in/vivianojiteli/
             </a>
           </div>

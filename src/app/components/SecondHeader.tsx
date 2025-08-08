@@ -43,7 +43,7 @@ const SecondHeader = () => {
               pathname === "/repositories" && "active"
             } flex gap-2 hover:bg-zinc-200 rounded p-1 items-center`}
           >
-            <Link href="/repositories" className="flex gap-2 items-center">
+            <Link href="/repo" className="flex gap-2 items-center">
               <RiGitRepositoryLine size={20} />
               <h1>Repositories</h1>
             </Link>
