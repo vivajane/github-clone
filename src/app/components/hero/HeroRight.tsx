@@ -58,6 +58,8 @@ const HeroRight = () => {
   if (!context) {
     throw new Error("Context is null");
   }
+  
+
   const { search, setSearch, repos, setRepos } = context;
   const seeSearch = () => {
     let reposClone = repos.slice()
@@ -66,17 +68,9 @@ const HeroRight = () => {
     setRepos(reposClone)
 
   }
-
-
-
   useEffect(() => {
     seeSearch()
   }, [search])
-
-
-
-
-
 
   return (
     <div className="lg:px-10 md:px-6 px-4    py-2 w-full">

@@ -18,15 +18,7 @@ const HeroLeft = () => {
   }
   const { items, setItems } = context;
 
-  useEffect(() => {
-    fetch("https://api.github.com/users/vivajane")
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data);
-        console.log(data);
-      });
-      
-  }, []);
+
 
   return (
     <div className="pl-2">

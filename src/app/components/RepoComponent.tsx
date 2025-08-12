@@ -8,17 +8,17 @@ type Repo = {
   name?: string;
   stack?: string;
   // updated: string;
-  link: string;
+  link?: string;
   repos?: boolean;
   full_name?: string;
-  updated_at: string;
+  updated_at?: string;
   id?: number;
 };
 type Props = {
   repo: Repo;
 };
 
-const handleUpdate = (dateString: string) => {
+const handleUpdate = (dateString?: string) => {
   if (!dateString) return "No updates";
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {

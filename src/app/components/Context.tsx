@@ -3,17 +3,19 @@ import { it } from "node:test";
 import React, { createContext, useState, useEffect } from "react";
 
 type itemType = {
+  id?: number;
   name?: string;
   stack?: string;
-  updated?: string;
   link?: string;
   avatar_url?: string;
   followers?: number;
+  bio?: string;
   following?: number;
   passport?: string;
   login?: string;
   repos_url?: string;
   public_repos?: number;
+  updated_at?: string;
 };
 
 type ContextType = {
