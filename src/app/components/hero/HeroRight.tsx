@@ -1,57 +1,83 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { MdOutlineWarehouse } from "react-icons/md";
-import { useState } from "react";
 import RepoComponent from "../RepoComponent";
+import { useState, useEffect } from "react";
+import { AppContext } from "../Context";
 
-const repos = [
-  {
-    id: 1,
-    name: "just-travel",
-    stack: "javascript",
-    updated: "Updated last week",
-    link: "/just-travel",
-  },
-  {
-    id: 2,
-    name: "MedTech",
-    stack: "javascript",
-    updated: "Updated last week",
-    link: "/medtech",
-  },
-  {
-    id: 3,
-    name: "Personal-Portfolio",
-    stack: "javascript",
-    updated: "Updated 2 week",
-    link: "/personal-portfolio",
-  },
-  {
-    id: 4,
-    name: "cosmos",
-    stack: "javascript",
-    updated: "Updated 3 week",
-    link: "/cosmos",
-  },
-  {
-    id: 5,
-    name: "form",
-    stack: "javascript",
-    updated: "Updated 3 week",
-    link: "/form",
-  },
-  {
-    id: 6,
-    name: "dashboard",
-    stack: "javascript",
-    updated: "Updated 3 week",
-    link: "/dashboard",
-  },
-];
+
+// const repos = [
+//   {
+//     id: 1,
+//     name: "just-travel",
+//     stack: "javascript",
+//     updated: "Updated last week",
+//     link: "/just-travel",
+//   },
+//   {
+//     id: 2,
+//     name: "MedTech",
+//     stack: "javascript",
+//     updated: "Updated last week",
+//     link: "/medtech",
+//   },
+//   {
+//     id: 3,
+//     name: "Personal-Portfolio",
+//     stack: "javascript",
+//     updated: "Updated 2 week",
+//     link: "/personal-portfolio",
+//   },
+//   {
+//     id: 4,
+//     name: "cosmos",
+//     stack: "javascript",
+//     updated: "Updated 3 week",
+//     link: "/cosmos",
+//   },
+//   {
+//     id: 5,
+//     name: "form",
+//     stack: "javascript",
+//     updated: "Updated 3 week",
+//     link: "/form",
+//   },
+//   {
+//     id: 6,
+//     name: "dashboard",
+//     stack: "javascript",
+//     updated: "Updated 3 week",
+//     link: "/dashboard",
+//   },
+// ];
+
 
 const HeroRight = () => {
-  const [showRepo, setRepo] = useState(false);
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("Context is null");
+  }
+  const { search, setSearch, repos, setRepos } = context;
+  const seeSearch = () => {
+    let reposClone = repos.slice()
+
+    reposClone = reposClone.filter((repo) => repo.name?.toUpperCase().includes(search.toUpperCase()))
+    setRepos(reposClone)
+
+  }
+
+
+
+  useEffect(() => {
+    seeSearch()
+  }, [search])
+
+
+
+
+
+
   return (
     <div className="lg:px-10 md:px-6 px-4    py-2 w-full">
       <div className="sm:flex block  gap-4 items-center">
@@ -61,6 +87,8 @@ const HeroRight = () => {
               <input
                 className="border w-full rounded-md px-4 py-1 border-zinc-200"
                 type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 name="repo"
                 id="repo"
                 placeholder="Find a repository..."
@@ -148,7 +176,7 @@ const HeroRight = () => {
       <hr className="hidden lg:block text-zinc-300 mt-4" />
       <div className="px-2 md:pr-6 py-4">
         <div className="grid lg:grid-cols-1 grid-cols-1 space-y-2 py-3 flex-col gap-4">
-          {repos.map((repo) => (
+          {repos && repos?.map((repo) => (
             <div key={repo.id} className=" ">
               <RepoComponent repo={repo} />
             </div>

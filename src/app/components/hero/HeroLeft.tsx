@@ -1,16 +1,33 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import passport from "../../../../public/images/passport.jpg";
 import { TbBrandGravatar } from "react-icons/tb";
-import { useState } from "react";
 import { GiShadowFollower } from "react-icons/gi";
 import { FaLinkedin } from "react-icons/fa";
-import { DiVisualstudio } from "react-icons/di";
+import { useState, useEffect } from "react";
+import Context, { AppContext } from "../Context";
 
 const HeroLeft = () => {
   const [avatarChange, setAvatarChange] = useState(false);
   const [checkStack, setCheckStack] = useState(false);
+
+  const context = useContext(AppContext);
+  if(!context){
+    throw new Error("HeroLeft must be used within a AppProvider");
+  }
+  const { items, setItems } = context;
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/vivajane")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        console.log(data);
+      });
+      
+  }, []);
+
   return (
     <div className="pl-2">
       <div className="pt-8 pb-4 hidden md:block relative w-full ">
@@ -18,7 +35,7 @@ const HeroLeft = () => {
           onMouseEnter={() => setAvatarChange(true)}
           onMouseLeave={() => setAvatarChange(false)}
           className="rounded-full w-72 aspect-square"
-          src={passport.src}
+          src={items.avatar_url || passport.src}
           alt="passport"
         />
         {avatarChange && (
@@ -46,7 +63,7 @@ const HeroLeft = () => {
       </div>
       <div className="hidden lg:block">
         <h1 className="text-2xl pt-3 font-semibold w-80">
-          Ojiteli Kosisochukwu
+          {items.login}
         </h1>
         <p className="text-xl text-zinc-500">
           vivajane <span>· she/her</span>
@@ -59,7 +76,7 @@ const HeroLeft = () => {
             onMouseEnter={() => setAvatarChange(true)}
             onMouseLeave={() => setAvatarChange(false)}
             className="rounded-full w-16 h-16 sm:w-18 sm:aspect-square"
-            src={passport.src}
+            src={items.avatar_url || passport.src}
             alt="passport"
           />
           {avatarChange && (
@@ -80,9 +97,7 @@ const HeroLeft = () => {
         </div>
       </div>
       <div className="hidden md:block lg:hidden">
-        <h1 className="text-2xl font-semibold w-80">
-          Ojiteli Kosisochukwu
-        </h1>
+        <h1 className="text-2xl font-semibold w-80">Ojiteli Kosisochukwu</h1>
         <p className="text-xl text-zinc-500">
           vivajane <span>· she/her</span>
         </p>
@@ -95,8 +110,7 @@ const HeroLeft = () => {
       </div>
 
       <p className="lg:w-72 w-full md:py-2 py-4 leading-6 text-zinc-700">
-        A Frontend developer experienced in HTML, CSS, React and Next.js with
-        keen interest in developing visually appealing websites
+       {items.bio}
       </p>
       <div className="">
         <button className="bg-zinc-100 border font-semibold border-zinc-300 text-zinc-800 w-full py-2 px-12 rounded-md">
@@ -107,10 +121,10 @@ const HeroLeft = () => {
         <div className="flex gap-2 hover:text-blue-500 text-zinc-600 items-center">
           <GiShadowFollower />
           <p className="hover:text-blue-500">
-            <span className="text-zinc-800 font-semibold">7</span> Followers
+            <span className="text-zinc-800 font-semibold">{items.followers}</span> Followers
           </p>
           <p className="hover:text-blue-500">
-            .<span className="text-zinc-800 font-semibold">6</span> Following
+            .<span className="text-zinc-800 font-semibold">{items.following}</span> Following
           </p>
         </div>
         <div>

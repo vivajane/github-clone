@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { GrOverview } from "react-icons/gr";
 import { RiGitRepositoryLine } from "react-icons/ri";
 
@@ -10,10 +10,16 @@ import { BsThreeDots } from "react-icons/bs";
 import { GoPackage, GoProjectTemplate } from "react-icons/go";
 import { CiStar } from "react-icons/ci";
 import ShowExtraModal from "./modal-header/ShowExtraModal";
+import { AppContext } from "./Context";
 
 
 const SecondHeader = () => {
   const [showExtra, setShowExtra] = useState(false);
+  const context = useContext(AppContext);
+    if(!context){
+    throw new Error("FirstHeader must be used within a AppProvider");
+  }
+  const{ items, setItems } = context;
   // const [showExtraModal, setShowExtraModal] = useState(false);
 
   const showExtraHandler = () => {
@@ -40,7 +46,7 @@ const SecondHeader = () => {
 
           <div
             className={`${
-              pathname === "/repositories" && "active"
+              pathname === "/repo" && "active"
             } flex gap-2 hover:bg-zinc-200 rounded p-1 items-center`}
           >
             <Link href="/repo" className="flex gap-2 items-center">
@@ -48,7 +54,7 @@ const SecondHeader = () => {
               <h1>Repositories</h1>
             </Link>
 
-            <h1 className="bg-zinc-200 rounded-full px-2">56</h1>
+            <h1 className="bg-zinc-200 rounded-full px-2">{items.public_repos}</h1>
           </div>
           <Link
             href="/projects"

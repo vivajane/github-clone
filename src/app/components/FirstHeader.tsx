@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
 import { Lora } from "next/font/google";
@@ -13,8 +13,10 @@ import { IoIosGitPullRequest } from "react-icons/io";
 import { RiNotification4Line } from "react-icons/ri";
 import passport from "../../../public/images/passport.jpg";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import CopilotModal from "./modal-header/CopilotModal";
+import { AppContext } from "./Context";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -29,6 +31,11 @@ const FirstHeader = () => {
   const [pullRequests, setPullRequests] = useState(false);
   const [unRead, setUnRead] = useState(false);
   const [showSideBar, setShowSideBar] = useState(false);
+  const context = useContext(AppContext)
+  if(!context){
+    throw new Error("FirstHeader must be used within a AppProvider");
+  }
+  const{ items, setItems } = context;
   const hidePilotHandler = () => {
     setShowPilot(false);
   };
@@ -68,10 +75,10 @@ const FirstHeader = () => {
           >
             <CiMenuBurger className="cursor-pointer" size={15} />
           </div>
-          <div>
+          <Link href="/">
             <FaGithub className="cursor-pointer" size={30} />
-          </div>
-          <h1 className={`font-bold ${lora.className}`}>vivajane</h1>
+          </Link>
+          <h1 className={`font-bold ${lora.className}`}>{items.login}</h1>
         </div>
         <div className="flex items-center gap-2">
           <div className="md:flex hidden cursor-pointer relative items-center gap-2">
@@ -177,7 +184,7 @@ const FirstHeader = () => {
               className="rounded-full w-10 aspect-square"
               width={27}
               height={27}
-              src={passport}
+              src={items.avatar_url || passport}
               alt="passport"
             ></Image>
           </div>
