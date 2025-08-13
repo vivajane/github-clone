@@ -9,24 +9,15 @@ type UserData = {
     bio: string;
     public_repos: number;
     html_url: string;
-    followers_url: number;
-    following_url: number;
+    followers: number;
+    following: number;
 }
 
-type repoData = {
-    id: number;
-    name: string;
-    html_url: string;
-    repos_url: string;
-    description: string;
-    followers_url: string;
-    forks_count: number;
-}
+
 
 const SearchPage = () => {
     const [username, setUsername] = useState<string>("");
     const [searchData, setSearchData] = useState<UserData | null>(null);
-    const [repo, setRepo] = useState([])
     const [error, setError] = useState<string | null>("")
 
 
@@ -40,12 +31,7 @@ const SearchPage = () => {
             const data: UserData = await response.json()
             setSearchData(data)
 
-            const repoRes = await fetch(`https://api.github.com/users/${username}/repos`)
-            if (!repoRes.ok) {
-                throw new Error("Repositories not found")
-            }
-            const repoData = await repoRes.json()
-            setRepo(repoData)
+           
 
         } catch (error) {
 
@@ -66,7 +52,7 @@ const SearchPage = () => {
 
 
     return (
-        <div className='max-w-md mx-auto border-zinc-600 border p-4 rounded-md '>
+        <div className={`max-w-md mx-auto ${searchData && "border-zinc-600 border p-4 rounded-md"} `}>
             <h1 className='text-2xl font-bold mb-4 text-center py-4'>SearchPage</h1>
             <div>
                 <div className='pb-3'>
