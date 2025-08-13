@@ -48,13 +48,17 @@ const SearchPage = () => {
             setRepo(repoData)
 
         } catch (error) {
-           
-            setError(error.message)
-            setSearchData(null)
-            setTimeout(() => {
-                 setError("")
-                
-            }, 1000 )
+
+            if (error instanceof Error) {
+                setError(error.message)
+                setSearchData(null)
+                setTimeout(() => {
+                setError("")
+
+            }, 1000)
+            }else{
+                setError(String(error))
+            }
 
         }
 
@@ -71,7 +75,7 @@ const SearchPage = () => {
                 <div >
                     <button onClick={handleSearch} className='border border-gray-300 rounded-md p-2'>Submit</button>
                 </div>
-                 {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p style={{ color: "red" }}>{error}</p>}
             </div>
             {searchData && <div className='space-y-3'>
                 <h1 className='text-xl font-bold'>{searchData.name}</h1>
