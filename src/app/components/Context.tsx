@@ -37,13 +37,20 @@ const Context = ({ children }: Props) => {
   const [items, setItems] = useState<itemType>({});
   const [search, setSearch] = useState("")
   const [repos, setRepos] = useState<itemType[]>([])
-  
+
 
   useEffect(() => {
-    fetch("https://api.github.com/users/vivajane/repos").then((res) => res.json()).then((data) => {
+    fetch("https://api.github.com/users/vivajane/repos", {
+      headers: {
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "my-nextjs-app" // Required by GitHub API
+      }
+    }).then((res) => res.json()).then((data) => {
       return setRepos(data);
-    })
-  }, [])
+    }).catch((err) => {
+      console.error("Error fetching repos:", err);
+    });
+  }, []);
 
   useEffect(() => {
     fetch("https://api.github.com/users/vivajane")

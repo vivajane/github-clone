@@ -8,12 +8,13 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { GoPackage, GoProjectTemplate } from "react-icons/go";
-import { CiStar } from "react-icons/ci";
+import { CiSearch, CiStar } from "react-icons/ci";
 import ShowExtraModal from "./modal-header/ShowExtraModal";
 import { AppContext } from "./Context";
 
 
 const SecondHeader = () => {
+  
   const [showExtra, setShowExtra] = useState(false);
   const context = useContext(AppContext);
     if(!context){
@@ -85,6 +86,9 @@ const SecondHeader = () => {
             </Link>
             <h1 className="bg-zinc-200 rounded-full px-2">6</h1>
           </div>
+          <Link href="/search" className="md:flex hidden">
+            <CiSearch size={20} />
+          </Link>
         </div>
         {/* for small screens */}
         <div className="relative">
