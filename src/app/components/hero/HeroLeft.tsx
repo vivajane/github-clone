@@ -17,9 +17,6 @@ const HeroLeft = () => {
     throw new Error("HeroLeft must be used within a AppProvider");
   }
   const { items, setItems } = context;
-
-
-
   return (
     <div className="pl-2">
       <div className="pt-8 pb-4 hidden md:block relative w-full ">
