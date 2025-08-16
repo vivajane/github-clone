@@ -100,7 +100,7 @@ const SearchPage = () => {
                         </div>
                     ))}
                 </div>
-            ) : "No repo found" }
+            ) : "" }
             </div>
             
         </div>
