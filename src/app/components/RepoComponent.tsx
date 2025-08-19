@@ -29,7 +29,7 @@ const handleUpdate = (dateString?: string) => {
 };
 
 const RepoComponent = ({ repo }: Props) => {
-  const router = useRouter();
+  
 
   return (
     <div className="flex justify-between">

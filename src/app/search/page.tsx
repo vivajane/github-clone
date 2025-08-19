@@ -44,6 +44,9 @@ const SearchPage = () => {
             setSearchData(data)
 
             const repoResponse = await fetch(`https://api.github.com/users/${username}/repos`)
+            if (!repoResponse.ok) {
+                throw new Error("User repos not found")
+            }
             const repoData = await repoResponse.json()
             setSeeRepo(repoData)
 
@@ -77,9 +80,9 @@ const SearchPage = () => {
                 <div className='pb-3'>
                     <input className='border w-full border-gray-300 rounded-md p-2' onChange={(e) => setUsername(e.target.value)} type="search" name="search" value={username} id="search" />
                 </div>
-               {!searchData && seeRepo.length === 0 &&  <div >
+                {!searchData && seeRepo.length === 0 && <div >
                     <button onClick={handleSearch} className='border border-gray-300 rounded-md p-2'>Submit</button>
-                </div> }
+                </div>}
                 {error && <p style={{ color: "red" }}>{error}</p>}
             </div>
             {searchData && <div className='space-y-3'>
@@ -92,17 +95,17 @@ const SearchPage = () => {
             </div>}
             <div className='mt-4'>
                 {seeRepo && seeRepo.length > 0 ? (
-                <div>
-                    <h2>Repositories</h2>
-                    {seeRepo.map((repository) =>(
-                        <div key={repository.id} className=' p-2 rounded-md mb-2'>
-                            <RepoComponent repo={repository}/>
-                        </div>
-                    ))}
-                </div>
-            ) : "" }
+                    <div>
+                        <h2>Repositories</h2>
+                        {seeRepo.map((repository) => (
+                            <div key={repository.id} className=' p-2 rounded-md mb-2'>
+                                <RepoComponent repo={repository} />
+                            </div>
+                        ))}
+                    </div>
+                ) : ""}
             </div>
-            
+
         </div>
     )
 }

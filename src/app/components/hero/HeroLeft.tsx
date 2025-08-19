@@ -55,7 +55,7 @@ const HeroLeft = () => {
           {items.login}
         </h1>
         <p className="text-xl text-zinc-500">
-          vivajane <span>· she/her</span>
+          {items.login} <span>· she/her</span>
         </p>
       </div>
       {/* for small screens */}
@@ -77,18 +77,18 @@ const HeroLeft = () => {
           {/* jjjjk/ */}
           <div className="lg:hidden block">
             <h1 className="sm:text-2xl text-xl pt-3 font-semibold md:w-80">
-              Ojiteli Kosisochukwu
+              {items.name}
             </h1>
             <p className="text-xl text-zinc-500">
-              vivajane <span>· she/her</span>
+              {items.login} <span>· she/her</span>
             </p>
           </div>
         </div>
       </div>
       <div className="hidden md:block lg:hidden">
-        <h1 className="text-2xl font-semibold w-80">Ojiteli Kosisochukwu</h1>
+        <h1 className="text-2xl font-semibold w-80">{items.name}</h1>
         <p className="text-xl text-zinc-500">
-          vivajane <span>· she/her</span>
+          {items.login} <span>· she/her</span>
         </p>
       </div>
       <div className="flex md:hidden gap-2 bg-zinc-50 text-zinc-600 border py-[2px] border-zinc-300 rounded-md px-4 items-center">
